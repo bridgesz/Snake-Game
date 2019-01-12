@@ -15,16 +15,30 @@ if check_errors[1] > 0:#prints number of errors if any
 else:#if no errors
     print("(+) PyGame successfully initialized!")
 
+#Sound
+#GOsound = pygame.mixer.Sound('death.wav')
+
+x = 720
+y = 460
+
+speed = 24
+
 #Play surface
-playSurface = pygame.display.set_mode((720, 460))#set width and height of window
+playSurface = pygame.display.set_mode((x, y))#set width and height of window
 pygame.display.set_caption('Snake game!')#title of the window
 
-#Colors
+#Base Colors
 red = pygame.Color(255, 0, 0)#game over
 green = pygame.Color(0, 255, 0)#snake
 black = pygame.Color(0, 0, 0)#score
 white = pygame.Color(255, 255, 255)#background
 brown = pygame.Color(165, 42, 42)#food
+
+#Other Colors
+blue = pygame.Color(0,0,255)
+yellow = pygame.Color(255,255,0)
+purple = pygame.Color(128,0,128)
+orange = pygame.Color(255,165,0)
 
 #FPS controller
 fpsController = pygame.time.Clock()
@@ -54,7 +68,7 @@ def gameOver():
     showScore(0)#shows the score in the middle
     pygame.display.flip()#updates the fps so it can display the words
     
-    time.sleep(4)#waits four second before closing
+    time.sleep(3)#waits x seconds before closing
     pygame.quit()#pygame exit
     sys.exit()#console exit
 
@@ -114,12 +128,13 @@ while True:
     if snakePos[0] == foodPos[0] and snakePos[1] == foodPos[1]:#if the snake head and the food have the same x,y
         score += 1
         foodSpawn = False#then the food will diappear
+        speed += 1#increases speed after each point
     else:
         snakeBody.pop()
         
     #Food Spawn
     if foodSpawn == False:#generates new food after the last one is eaten
-        foodPos = [random.randrange(1,72)*10,random.randrange(1,46)*10] 
+        foodPos = [random.randrange(1,x/10)*10,random.randrange(1,y/10)*10] #####################################
     foodSpawn = True
     
     #Background
@@ -146,4 +161,4 @@ while True:
     showScore()
     pygame.display.flip()#updates the screen
     
-    fpsController.tick(24)#fps (control the speed) (24)
+    fpsController.tick(speed)#fps (controls the speed)
