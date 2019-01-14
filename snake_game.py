@@ -16,7 +16,8 @@ else:#if no errors
     print("(+) PyGame successfully initialized!")
 
 #Sound
-#GOsound = pygame.mixer.Sound('death.wav')
+GOsound = pygame.mixer.Sound('death.wav')
+#eatsound = pygame.mixer.Sound('food.wav')
 
 x = 720
 y = 460
@@ -67,6 +68,7 @@ def gameOver():
     playSurface.blit(GOsurf,GOrect)
     showScore(0)#shows the score in the middle
     pygame.display.flip()#updates the fps so it can display the words
+    GOsound.play()
     
     time.sleep(3)#waits x seconds before closing
     pygame.quit()#pygame exit
@@ -129,12 +131,14 @@ while True:
         score += 1
         foodSpawn = False#then the food will diappear
         speed += 1#increases speed after each point
+        print (speed)
     else:
         snakeBody.pop()
         
     #Food Spawn
     if foodSpawn == False:#generates new food after the last one is eaten
-        foodPos = [random.randrange(1,x/10)*10,random.randrange(1,y/10)*10] #####################################
+        #eatsound.play()########################################################################################################
+        foodPos = [random.randrange(1,x/10)*10,random.randrange(1,y/10)*10]
     foodSpawn = True
     
     #Background
