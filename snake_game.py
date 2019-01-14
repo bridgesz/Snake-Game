@@ -17,7 +17,7 @@ else:#if no errors
 
 #Sound
 GOsound = pygame.mixer.Sound('death.wav')
-#eatsound = pygame.mixer.Sound('food.wav')
+
 
 x = 720
 y = 460
@@ -137,7 +137,7 @@ while True:
         
     #Food Spawn
     if foodSpawn == False:#generates new food after the last one is eaten
-        #eatsound.play()########################################################################################################
+
         foodPos = [random.randrange(1,x/10)*10,random.randrange(1,y/10)*10]
     foodSpawn = True
     
